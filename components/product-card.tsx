@@ -25,9 +25,14 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const { addItem } = useCart()
   
   const isPackProveedores = product.name === "PACK PROVEEDORES"
+  const isTicketsEditables = product.name === "99 TICKETS EDITABLES"
+  const hasShopifyButton = isPackProveedores || isTicketsEditables
   
   useEffect(() => {
-    if (!isPackProveedores) return
+    if (!hasShopifyButton) return
+    
+    const productId = isPackProveedores ? '15694103445835' : '15694101774667'
+    const nodeId = isPackProveedores ? 'product-component-pack-proveedores' : 'product-component-tickets'
     
     const scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js'
     
@@ -39,8 +44,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       
       window.ShopifyBuy.UI.onReady(client).then(function (ui: any) {
         ui.createComponent('product', {
-          id: '15694103445835',
-          node: document.getElementById('product-component-pack-proveedores'),
+          id: productId,
+          node: document.getElementById(nodeId),
           moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
           options: {
             "product": {
@@ -267,7 +272,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
     } else {
       loadScript()
     }
-  }, [isPackProveedores])
+  }, [hasShopifyButton, isPackProveedores, productId, nodeId])
 
   const handleAddToCart = () => {
     addItem({
@@ -322,8 +327,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 </button>
               ))}
             </div>
-            {isPackProveedores ? (
-              <div id="product-component-pack-proveedores" className="shopify-buy-button"></div>
+            {hasShopifyButton ? (
+              <div id={isPackProveedores ? "product-component-pack-proveedores" : "product-component-tickets"} className="shopify-buy-button"></div>
             ) : (
               <button
                 onClick={handleAddToCart}
