@@ -1,11 +1,17 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { ShoppingBag, Heart } from "lucide-react"
 import { useCart } from "@/context/cart-context"
 import type { Product } from "@/lib/products"
+
+declare global {
+  interface Window {
+    ShopifyBuy: any
+  }
+}
 
 interface ProductCardProps {
   product: Product
@@ -17,6 +23,81 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
   const { addItem } = useCart()
+  
+  const isPackProveedores = product.name === "PACK PROVEEDORES"
+  
+  useEffect(() => {
+    if (!isPackProveedores) return
+    
+    const scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js'
+    
+    function ShopifyBuyInit() {
+      const client = window.ShopifyBuy.buildClient({
+        domain: 'prnpkh-iy.myshopify.com',
+        storefrontAccessToken: 'de9901cf9776dedbe1d1370b2f330081',
+      })
+      
+      window.ShopifyBuy.UI.onReady(client).then(function (ui: any) {
+        ui.createComponent('product', {
+          id: '15694103445835',
+          node: document.getElementById('product-component-pack-proveedores'),
+          moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
+          options: {
+            product: {
+              styles: {
+                product: {
+                  "@media (min-width: 601px)": {
+                    "max-width": "100%",
+                    "margin-left": "0px",
+                    "margin-bottom": "0px"
+                  }
+                },
+                button: {
+                  "background-color": "hsl(var(--primary))",
+                  "font-family": "inherit",
+                  ":hover": {
+                    "background-color": "hsl(var(--primary) / 0.9)"
+                  },
+                  "font-size": "12px",
+                  "padding": "12px 24px",
+                  "font-weight": "500",
+                  "text-transform": "uppercase",
+                  "letter-spacing": "0.05em"
+                }
+              },
+              text: {
+                button: "Comprar"
+              }
+            },
+            cart: {
+              text: {
+                total: "Subtotal",
+                button: "Pagar"
+              }
+            }
+          },
+        })
+      })
+    }
+    
+    function loadScript() {
+      const script = document.createElement('script')
+      script.async = true
+      script.src = scriptURL
+      document.head.appendChild(script)
+      script.onload = ShopifyBuyInit
+    }
+    
+    if (window.ShopifyBuy) {
+      if (window.ShopifyBuy.UI) {
+        ShopifyBuyInit()
+      } else {
+        loadScript()
+      }
+    } else {
+      loadScript()
+    }
+  }, [isPackProveedores])
 
   const handleAddToCart = () => {
     addItem({
@@ -71,13 +152,17 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 </button>
               ))}
             </div>
-            <button
-              onClick={handleAddToCart}
-              className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-medium tracking-wider uppercase hover:bg-primary/90 transition-colors duration-300"
-            >
-              <ShoppingBag className="w-4 h-4" />
-              Añadir
-            </button>
+            {isPackProveedores ? (
+              <div id="product-component-pack-proveedores" className="shopify-buy-button"></div>
+            ) : (
+              <button
+                onClick={handleAddToCart}
+                className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-medium tracking-wider uppercase hover:bg-primary/90 transition-colors duration-300"
+              >
+                <ShoppingBag className="w-4 h-4" />
+                Añadir
+              </button>
+            )}
           </div>
         </motion.div>
 
