@@ -112,12 +112,12 @@ export default function HomePage() {
               {
                 icon: Truck,
                 title: "Envío Gratuito",
-                description: "En pedidos superiores a 200€ en península",
+                description: "En todos nuestros pedidos",
               },
               {
                 icon: Shield,
                 title: "Garantía Total",
-                description: "30 días de devolución sin preguntas",
+                description: "Todos nuestros proveedores son de confianza y ofrecen los mejores productos del mercado",
               },
             ].map((feature, index) => (
               <motion.div
