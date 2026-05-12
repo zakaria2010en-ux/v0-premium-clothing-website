@@ -514,32 +514,30 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         />
 
         {/* Overlay */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isHovered ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0 bg-background/40 backdrop-blur-sm flex items-end justify-center pb-6"
-        >
-          {/* Size Selection */}
-          <div className="flex flex-col items-center gap-3">
-            <div className="flex gap-2">
-              {product.sizes.slice(0, 5).map((size) => (
-                <button
-                  key={size}
-                  onClick={() => setSelectedSize(size)}
-                  className={`w-10 h-10 text-xs font-medium border transition-all duration-300 ${
-                    selectedSize === size
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-background/80 text-foreground border-border hover:border-primary"
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-            {hasShopifyButton ? (
-              <div id={shopifyNodeId} className="shopify-buy-button"></div>
-            ) : (
+        {!hasShopifyButton && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 bg-background/40 backdrop-blur-sm flex items-end justify-center pb-6"
+          >
+            {/* Size Selection */}
+            <div className="flex flex-col items-center gap-3">
+              <div className="flex gap-2">
+                {product.sizes.slice(0, 5).map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`w-10 h-10 text-xs font-medium border transition-all duration-300 ${
+                      selectedSize === size
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "bg-background/80 text-foreground border-border hover:border-primary"
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
               <button
                 onClick={handleAddToCart}
                 className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-medium tracking-wider uppercase hover:bg-primary/90 transition-colors duration-300"
@@ -547,9 +545,9 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 <ShoppingBag className="w-4 h-4" />
                 Añadir
               </button>
-            )}
-          </div>
-        </motion.div>
+            </div>
+          </motion.div>
+        )}
 
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">
@@ -578,8 +576,16 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         </button>
       </div>
 
+      {/* Shopify Button for special products */}
+      {hasShopifyButton && (
+        <div className="mt-4">
+          <div id={shopifyNodeId} className="shopify-buy-button"></div>
+        </div>
+      )}
+
       {/* Product Info */}
-      <div className="mt-4 space-y-2">
+      {!hasShopifyButton && (
+        <div className="mt-4 space-y-2">
         <h3 className="text-sm font-medium text-foreground tracking-wide group-hover:text-primary transition-colors duration-300">
           {product.name}
         </h3>
@@ -593,7 +599,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             </span>
           )}
         </div>
-      </div>
+        </div>
+      )}
     </motion.article>
   )
 }
