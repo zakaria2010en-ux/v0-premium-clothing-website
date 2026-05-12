@@ -29,12 +29,422 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const hasShopifyButton = isPackProveedores || isTicketsEditables
   
   const shopifyProductId = isPackProveedores ? '15694103445835' : '15694101774667'
-  const shopifyNodeId = isPackProveedores ? 'product-component-pack-proveedores' : 'product-component-tickets'
+  const shopifyNodeId = isPackProveedores ? 'product-component-pack-proveedores' : 'product-component-1778613855450'
   
   useEffect(() => {
     if (!hasShopifyButton) return
     
     const scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js'
+    
+    const packProveedoresOptions = {
+      "product": {
+        "styles": {
+          "product": {
+            "@media (min-width: 601px)": {
+              "max-width": "calc(25% - 20px)",
+              "margin-left": "20px",
+              "margin-bottom": "50px"
+            },
+            "carousel-button": {
+              "display": "none"
+            }
+          },
+          "title": {
+            "font-family": "Droid Sans, sans-serif",
+            "font-size": "20px",
+            "color": "#000000"
+          },
+          "button": {
+            "font-family": "Quantico, sans-serif",
+            "font-weight": "bold",
+            "font-size": "18px",
+            "padding-top": "17px",
+            "padding-bottom": "17px",
+            "color": "#000000",
+            ":hover": {
+              "color": "#000000",
+              "background-color": "#d7ac04"
+            },
+            "background-color": "#efbf04",
+            ":focus": {
+              "background-color": "#d7ac04"
+            }
+          },
+          "quantityInput": {
+            "font-size": "18px",
+            "padding-top": "17px",
+            "padding-bottom": "17px"
+          },
+          "price": {
+            "font-family": "PT Sans, sans-serif",
+            "font-weight": "bold",
+            "font-size": "19px"
+          },
+          "compareAt": {
+            "font-family": "PT Sans, sans-serif",
+            "font-weight": "bold",
+            "font-size": "16.15px"
+          },
+          "unitPrice": {
+            "font-family": "PT Sans, sans-serif",
+            "font-weight": "bold",
+            "font-size": "16.15px"
+          }
+        },
+        "contents": {
+          "img": false,
+          "imgWithCarousel": false,
+          "button": false,
+          "buttonWithQuantity": true,
+          "title": false,
+          "price": false
+        },
+        "text": {
+          "button": "Añadir al carrito"
+        },
+        "googleFonts": [
+          "Droid Sans",
+          "PT Sans",
+          "Quantico"
+        ]
+      },
+      "productSet": {
+        "styles": {
+          "products": {
+            "@media (min-width: 601px)": {
+              "margin-left": "-20px"
+            }
+          }
+        }
+      },
+      "modalProduct": {
+        "contents": {
+          "img": false,
+          "imgWithCarousel": false,
+          "button": false,
+          "buttonWithQuantity": true
+        },
+        "styles": {
+          "product": {
+            "@media (min-width: 601px)": {
+              "max-width": "100%",
+              "margin-left": "0px",
+              "margin-bottom": "0px"
+            }
+          },
+          "button": {
+            "font-family": "Quantico, sans-serif",
+            "font-weight": "bold",
+            "font-size": "18px",
+            "padding-top": "17px",
+            "padding-bottom": "17px",
+            "color": "#000000",
+            ":hover": {
+              "color": "#000000",
+              "background-color": "#d7ac04"
+            },
+            "background-color": "#efbf04",
+            ":focus": {
+              "background-color": "#d7ac04"
+            }
+          },
+          "quantityInput": {
+            "font-size": "18px",
+            "padding-top": "17px",
+            "padding-bottom": "17px"
+          },
+          "title": {
+            "font-family": "Helvetica Neue, sans-serif",
+            "font-weight": "bold",
+            "font-size": "26px",
+            "color": "#4c4c4c"
+          },
+          "price": {
+            "font-family": "Helvetica Neue, sans-serif",
+            "font-weight": "normal",
+            "font-size": "18px",
+            "color": "#4c4c4c"
+          },
+          "compareAt": {
+            "font-family": "Helvetica Neue, sans-serif",
+            "font-weight": "normal",
+            "font-size": "15.299999999999999px",
+            "color": "#4c4c4c"
+          },
+          "unitPrice": {
+            "font-family": "Helvetica Neue, sans-serif",
+            "font-weight": "normal",
+            "font-size": "15.299999999999999px",
+            "color": "#4c4c4c"
+          }
+        },
+        "googleFonts": [
+          "Quantico"
+        ],
+        "text": {
+          "button": "Add to cart"
+        }
+      },
+      "option": {},
+      "cart": {
+        "styles": {
+          "button": {
+            "font-family": "Quantico, sans-serif",
+            "font-weight": "bold",
+            "font-size": "18px",
+            "padding-top": "17px",
+            "padding-bottom": "17px",
+            "color": "#000000",
+            ":hover": {
+              "color": "#000000",
+              "background-color": "#d7ac04"
+            },
+            "background-color": "#efbf04",
+            ":focus": {
+              "background-color": "#d7ac04"
+            }
+          }
+        },
+        "text": {
+          "total": "Subtotal",
+          "button": "Checkout"
+        },
+        "googleFonts": [
+          "Quantico"
+        ]
+      },
+      "toggle": {
+        "styles": {
+          "toggle": {
+            "font-family": "Quantico, sans-serif",
+            "font-weight": "bold",
+            "background-color": "#efbf04",
+            ":hover": {
+              "background-color": "#d7ac04"
+            },
+            ":focus": {
+              "background-color": "#d7ac04"
+            }
+          },
+          "count": {
+            "font-size": "18px",
+            "color": "#000000",
+            ":hover": {
+              "color": "#000000"
+            }
+          },
+          "iconPath": {
+            "fill": "#000000"
+          }
+        },
+        "googleFonts": [
+          "Quantico"
+        ]
+      }
+    }
+
+    const ticketsEditablesOptions = {
+      "product": {
+        "styles": {
+          "product": {
+            "@media (min-width: 601px)": {
+              "max-width": "calc(25% - 20px)",
+              "margin-left": "20px",
+              "margin-bottom": "50px"
+            }
+          },
+          "title": {
+            "font-family": "Droid Sans, sans-serif",
+            "color": "#000000"
+          },
+          "button": {
+            "font-family": "Quantico, sans-serif",
+            "font-weight": "bold",
+            "font-size": "18px",
+            "padding-top": "17px",
+            "padding-bottom": "17px",
+            "color": "#000000",
+            ":hover": {
+              "color": "#000000",
+              "background-color": "#d7ac04"
+            },
+            "background-color": "#efbf04",
+            ":focus": {
+              "background-color": "#d7ac04"
+            }
+          },
+          "quantityInput": {
+            "font-size": "18px",
+            "padding-top": "17px",
+            "padding-bottom": "17px"
+          },
+          "price": {
+            "font-family": "PT Sans, sans-serif",
+            "font-weight": "bold"
+          },
+          "compareAt": {
+            "font-family": "PT Sans, sans-serif",
+            "font-weight": "bold"
+          },
+          "unitPrice": {
+            "font-family": "PT Sans, sans-serif",
+            "font-weight": "bold"
+          }
+        },
+        "contents": {
+          "img": false,
+          "button": false,
+          "buttonWithQuantity": true,
+          "title": false,
+          "price": false
+        },
+        "text": {
+          "button": "Add to cart"
+        },
+        "googleFonts": [
+          "Droid Sans",
+          "PT Sans",
+          "Quantico"
+        ]
+      },
+      "productSet": {
+        "styles": {
+          "products": {
+            "@media (min-width: 601px)": {
+              "margin-left": "-20px"
+            }
+          }
+        }
+      },
+      "modalProduct": {
+        "contents": {
+          "img": false,
+          "imgWithCarousel": true,
+          "button": false,
+          "buttonWithQuantity": true
+        },
+        "styles": {
+          "product": {
+            "@media (min-width: 601px)": {
+              "max-width": "100%",
+              "margin-left": "0px",
+              "margin-bottom": "0px"
+            }
+          },
+          "button": {
+            "font-family": "Quantico, sans-serif",
+            "font-weight": "bold",
+            "font-size": "18px",
+            "padding-top": "17px",
+            "padding-bottom": "17px",
+            "color": "#000000",
+            ":hover": {
+              "color": "#000000",
+              "background-color": "#d7ac04"
+            },
+            "background-color": "#efbf04",
+            ":focus": {
+              "background-color": "#d7ac04"
+            }
+          },
+          "quantityInput": {
+            "font-size": "18px",
+            "padding-top": "17px",
+            "padding-bottom": "17px"
+          },
+          "title": {
+            "font-family": "Helvetica Neue, sans-serif",
+            "font-weight": "bold",
+            "font-size": "26px",
+            "color": "#4c4c4c"
+          },
+          "price": {
+            "font-family": "Helvetica Neue, sans-serif",
+            "font-weight": "normal",
+            "font-size": "18px",
+            "color": "#4c4c4c"
+          },
+          "compareAt": {
+            "font-family": "Helvetica Neue, sans-serif",
+            "font-weight": "normal",
+            "font-size": "15.299999999999999px",
+            "color": "#4c4c4c"
+          },
+          "unitPrice": {
+            "font-family": "Helvetica Neue, sans-serif",
+            "font-weight": "normal",
+            "font-size": "15.299999999999999px",
+            "color": "#4c4c4c"
+          }
+        },
+        "googleFonts": [
+          "Quantico"
+        ],
+        "text": {
+          "button": "Add to cart"
+        }
+      },
+      "option": {},
+      "cart": {
+        "styles": {
+          "button": {
+            "font-family": "Quantico, sans-serif",
+            "font-weight": "bold",
+            "font-size": "18px",
+            "padding-top": "17px",
+            "padding-bottom": "17px",
+            "color": "#000000",
+            ":hover": {
+              "color": "#000000",
+              "background-color": "#d7ac04"
+            },
+            "background-color": "#efbf04",
+            ":focus": {
+              "background-color": "#d7ac04"
+            }
+          }
+        },
+        "text": {
+          "title": "Cesta",
+          "total": "Subtotal",
+          "empty": "Tu carrito esta vacio.",
+          "notice": "Envío y descuento se añaden al finalizar la compra.",
+          "button": "Checkout",
+          "noteDescription": ""
+        },
+        "googleFonts": [
+          "Quantico"
+        ]
+      },
+      "toggle": {
+        "styles": {
+          "toggle": {
+            "font-family": "Quantico, sans-serif",
+            "font-weight": "bold",
+            "background-color": "#efbf04",
+            ":hover": {
+              "background-color": "#d7ac04"
+            },
+            ":focus": {
+              "background-color": "#d7ac04"
+            }
+          },
+          "count": {
+            "font-size": "18px",
+            "color": "#000000",
+            ":hover": {
+              "color": "#000000"
+            }
+          },
+          "iconPath": {
+            "fill": "#000000"
+          }
+        },
+        "googleFonts": [
+          "Quantico"
+        ]
+      }
+    }
     
     function ShopifyBuyInit() {
       const client = window.ShopifyBuy.buildClient({
@@ -47,212 +457,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           id: shopifyProductId,
           node: document.getElementById(shopifyNodeId),
           moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
-          options: {
-            "product": {
-              "styles": {
-                "product": {
-                  "@media (min-width: 601px)": {
-                    "max-width": "calc(25% - 20px)",
-                    "margin-left": "20px",
-                    "margin-bottom": "50px"
-                  },
-                  "carousel-button": {
-                    "display": "none"
-                  }
-                },
-                "title": {
-                  "font-family": "Droid Sans, sans-serif",
-                  "font-size": "20px",
-                  "color": "#000000"
-                },
-                "button": {
-                  "font-family": "Quantico, sans-serif",
-                  "font-weight": "bold",
-                  "font-size": "18px",
-                  "padding-top": "17px",
-                  "padding-bottom": "17px",
-                  "color": "#000000",
-                  ":hover": {
-                    "color": "#000000",
-                    "background-color": "#d7ac04"
-                  },
-                  "background-color": "#efbf04",
-                  ":focus": {
-                    "background-color": "#d7ac04"
-                  }
-                },
-                "quantityInput": {
-                  "font-size": "18px",
-                  "padding-top": "17px",
-                  "padding-bottom": "17px"
-                },
-                "price": {
-                  "font-family": "PT Sans, sans-serif",
-                  "font-weight": "bold",
-                  "font-size": "19px"
-                },
-                "compareAt": {
-                  "font-family": "PT Sans, sans-serif",
-                  "font-weight": "bold",
-                  "font-size": "16.15px"
-                },
-                "unitPrice": {
-                  "font-family": "PT Sans, sans-serif",
-                  "font-weight": "bold",
-                  "font-size": "16.15px"
-                }
-              },
-              "contents": {
-                "img": false,
-                "imgWithCarousel": false,
-                "button": false,
-                "buttonWithQuantity": true,
-                "title": false,
-                "price": false
-              },
-              "text": {
-                "button": "Añadir al carrito"
-              },
-              "googleFonts": [
-                "Droid Sans",
-                "PT Sans",
-                "Quantico"
-              ]
-            },
-            "productSet": {
-              "styles": {
-                "products": {
-                  "@media (min-width: 601px)": {
-                    "margin-left": "-20px"
-                  }
-                }
-              }
-            },
-            "modalProduct": {
-              "contents": {
-                "img": false,
-                "imgWithCarousel": false,
-                "button": false,
-                "buttonWithQuantity": true
-              },
-              "styles": {
-                "product": {
-                  "@media (min-width: 601px)": {
-                    "max-width": "100%",
-                    "margin-left": "0px",
-                    "margin-bottom": "0px"
-                  }
-                },
-                "button": {
-                  "font-family": "Quantico, sans-serif",
-                  "font-weight": "bold",
-                  "font-size": "18px",
-                  "padding-top": "17px",
-                  "padding-bottom": "17px",
-                  "color": "#000000",
-                  ":hover": {
-                    "color": "#000000",
-                    "background-color": "#d7ac04"
-                  },
-                  "background-color": "#efbf04",
-                  ":focus": {
-                    "background-color": "#d7ac04"
-                  }
-                },
-                "quantityInput": {
-                  "font-size": "18px",
-                  "padding-top": "17px",
-                  "padding-bottom": "17px"
-                },
-                "title": {
-                  "font-family": "Helvetica Neue, sans-serif",
-                  "font-weight": "bold",
-                  "font-size": "26px",
-                  "color": "#4c4c4c"
-                },
-                "price": {
-                  "font-family": "Helvetica Neue, sans-serif",
-                  "font-weight": "normal",
-                  "font-size": "18px",
-                  "color": "#4c4c4c"
-                },
-                "compareAt": {
-                  "font-family": "Helvetica Neue, sans-serif",
-                  "font-weight": "normal",
-                  "font-size": "15.299999999999999px",
-                  "color": "#4c4c4c"
-                },
-                "unitPrice": {
-                  "font-family": "Helvetica Neue, sans-serif",
-                  "font-weight": "normal",
-                  "font-size": "15.299999999999999px",
-                  "color": "#4c4c4c"
-                }
-              },
-              "googleFonts": [
-                "Quantico"
-              ],
-              "text": {
-                "button": "Add to cart"
-              }
-            },
-            "option": {},
-            "cart": {
-              "styles": {
-                "button": {
-                  "font-family": "Quantico, sans-serif",
-                  "font-weight": "bold",
-                  "font-size": "18px",
-                  "padding-top": "17px",
-                  "padding-bottom": "17px",
-                  "color": "#000000",
-                  ":hover": {
-                    "color": "#000000",
-                    "background-color": "#d7ac04"
-                  },
-                  "background-color": "#efbf04",
-                  ":focus": {
-                    "background-color": "#d7ac04"
-                  }
-                }
-              },
-              "text": {
-                "total": "Subtotal",
-                "button": "Checkout"
-              },
-              "googleFonts": [
-                "Quantico"
-              ]
-            },
-            "toggle": {
-              "styles": {
-                "toggle": {
-                  "font-family": "Quantico, sans-serif",
-                  "font-weight": "bold",
-                  "background-color": "#efbf04",
-                  ":hover": {
-                    "background-color": "#d7ac04"
-                  },
-                  ":focus": {
-                    "background-color": "#d7ac04"
-                  }
-                },
-                "count": {
-                  "font-size": "18px",
-                  "color": "#000000",
-                  ":hover": {
-                    "color": "#000000"
-                  }
-                },
-                "iconPath": {
-                  "fill": "#000000"
-                }
-              },
-              "googleFonts": [
-                "Quantico"
-              ]
-            }
-          },
+          options: isPackProveedores ? packProveedoresOptions : ticketsEditablesOptions,
         })
       })
     }
