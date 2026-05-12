@@ -104,9 +104,11 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               },
               "contents": {
                 "img": false,
-                "imgWithCarousel": true,
+                "imgWithCarousel": false,
                 "button": false,
-                "buttonWithQuantity": true
+                "buttonWithQuantity": true,
+                "title": false,
+                "price": false
               },
               "text": {
                 "button": "Añadir al carrito"
@@ -129,7 +131,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             "modalProduct": {
               "contents": {
                 "img": false,
-                "imgWithCarousel": true,
+                "imgWithCarousel": false,
                 "button": false,
                 "buttonWithQuantity": true
               },
