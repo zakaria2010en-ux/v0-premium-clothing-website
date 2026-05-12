@@ -25,10 +25,9 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const { addItem } = useCart()
   
   const isPackProveedores = product.name === "PACK PROVEEDORES"
-  const isTicketsEditables = product.name === "99 TICKETS EDITABLES"
   
   useEffect(() => {
-    if (!isPackProveedores && !isTicketsEditables) return
+    if (!isPackProveedores) return
     
     const scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js'
     
@@ -39,267 +38,47 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       })
       
       window.ShopifyBuy.UI.onReady(client).then(function (ui: any) {
-        if (isPackProveedores) {
-          const packNode = document.getElementById('product-component-pack-proveedores')
-          if (packNode && !packNode.hasChildNodes()) {
-            ui.createComponent('product', {
-              id: '15694103445835',
-              node: packNode,
-              moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
-              options: {
-                product: {
-                  styles: {
-                    product: {
-                      "@media (min-width: 601px)": {
-                        "max-width": "100%",
-                        "margin-left": "0px",
-                        "margin-bottom": "0px"
-                      }
-                    },
-                    button: {
-                      "background-color": "hsl(var(--primary))",
-                      "font-family": "inherit",
-                      ":hover": {
-                        "background-color": "hsl(var(--primary) / 0.9)"
-                      },
-                      "font-size": "12px",
-                      "padding": "12px 24px",
-                      "font-weight": "500",
-                      "text-transform": "uppercase",
-                      "letter-spacing": "0.05em"
+        const packNode = document.getElementById('product-component-pack-proveedores')
+        if (packNode && !packNode.hasChildNodes()) {
+          ui.createComponent('product', {
+            id: '15694103445835',
+            node: packNode,
+            moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
+            options: {
+              product: {
+                styles: {
+                  product: {
+                    "@media (min-width: 601px)": {
+                      "max-width": "100%",
+                      "margin-left": "0px",
+                      "margin-bottom": "0px"
                     }
                   },
-                  text: {
-                    button: "Comprar"
+                  button: {
+                    "background-color": "hsl(var(--primary))",
+                    "font-family": "inherit",
+                    ":hover": {
+                      "background-color": "hsl(var(--primary) / 0.9)"
+                    },
+                    "font-size": "12px",
+                    "padding": "12px 24px",
+                    "font-weight": "500",
+                    "text-transform": "uppercase",
+                    "letter-spacing": "0.05em"
                   }
                 },
-                cart: {
-                  text: {
-                    total: "Subtotal",
-                    button: "Pagar"
-                  }
+                text: {
+                  button: "Comprar"
                 }
               },
-            })
-          }
-        }
-        
-        if (isTicketsEditables) {
-          const ticketsNode = document.getElementById('product-component-1778614265732')
-          if (ticketsNode && !ticketsNode.hasChildNodes()) {
-            ui.createComponent('product', {
-              id: '15694101774667',
-              node: ticketsNode,
-              moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
-              options: {
-                "product": {
-                  "styles": {
-                    "product": {
-                      "@media (min-width: 601px)": {
-                        "max-width": "100%",
-                        "margin-left": "0px",
-                        "margin-bottom": "0px"
-                      }
-                    },
-                    "title": {
-                      "font-family": "Droid Sans, sans-serif",
-                      "font-size": "16px",
-                      "color": "#000000"
-                    },
-                    "button": {
-                      "font-family": "Quantico, sans-serif",
-                      "font-weight": "bold",
-                      "font-size": "16px",
-                      "padding-top": "16px",
-                      "padding-bottom": "16px",
-                      "color": "#000000",
-                      ":hover": {
-                        "color": "#000000",
-                        "background-color": "#d7ac04"
-                      },
-                      "background-color": "#efbf04",
-                      ":focus": {
-                        "background-color": "#d7ac04"
-                      },
-                      "padding-left": "28px",
-                      "padding-right": "28px"
-                    },
-                    "quantityInput": {
-                      "font-size": "16px",
-                      "padding-top": "16px",
-                      "padding-bottom": "16px"
-                    },
-                    "price": {
-                      "font-family": "PT Sans, sans-serif",
-                      "font-weight": "bold"
-                    },
-                    "compareAt": {
-                      "font-family": "PT Sans, sans-serif",
-                      "font-weight": "bold"
-                    },
-                    "unitPrice": {
-                      "font-family": "PT Sans, sans-serif",
-                      "font-weight": "bold"
-                    }
-                  },
-                  "contents": {
-                    "img": false,
-                    "title": false,
-                    "price": false,
-                    "button": false,
-                    "buttonWithQuantity": true
-                  },
-                  "text": {
-                    "button": "Añadir a la cesta"
-                  },
-                  "googleFonts": [
-                    "Droid Sans",
-                    "PT Sans",
-                    "Quantico"
-                  ]
-                },
-                "productSet": {
-                  "styles": {
-                    "products": {
-                      "@media (min-width: 601px)": {
-                        "margin-left": "-20px"
-                      }
-                    }
-                  }
-                },
-                "modalProduct": {
-                  "contents": {
-                    "img": false,
-                    "imgWithCarousel": true,
-                    "button": false,
-                    "buttonWithQuantity": true
-                  },
-                  "styles": {
-                    "product": {
-                      "@media (min-width: 601px)": {
-                        "max-width": "100%",
-                        "margin-left": "0px",
-                        "margin-bottom": "0px"
-                      }
-                    },
-                    "button": {
-                      "font-family": "Quantico, sans-serif",
-                      "font-weight": "bold",
-                      "font-size": "16px",
-                      "padding-top": "16px",
-                      "padding-bottom": "16px",
-                      "color": "#000000",
-                      ":hover": {
-                        "color": "#000000",
-                        "background-color": "#d7ac04"
-                      },
-                      "background-color": "#efbf04",
-                      ":focus": {
-                        "background-color": "#d7ac04"
-                      },
-                      "padding-left": "28px",
-                      "padding-right": "28px"
-                    },
-                    "quantityInput": {
-                      "font-size": "16px",
-                      "padding-top": "16px",
-                      "padding-bottom": "16px"
-                    },
-                    "title": {
-                      "font-family": "Helvetica Neue, sans-serif",
-                      "font-weight": "bold",
-                      "font-size": "26px",
-                      "color": "#4c4c4c"
-                    },
-                    "price": {
-                      "font-family": "Helvetica Neue, sans-serif",
-                      "font-weight": "normal",
-                      "font-size": "18px",
-                      "color": "#4c4c4c"
-                    },
-                    "compareAt": {
-                      "font-family": "Helvetica Neue, sans-serif",
-                      "font-weight": "normal",
-                      "font-size": "15.3px",
-                      "color": "#4c4c4c"
-                    },
-                    "unitPrice": {
-                      "font-family": "Helvetica Neue, sans-serif",
-                      "font-weight": "normal",
-                      "font-size": "15.3px",
-                      "color": "#4c4c4c"
-                    }
-                  },
-                  "googleFonts": [
-                    "Quantico"
-                  ],
-                  "text": {
-                    "button": "Add to cart"
-                  }
-                },
-                "option": {},
-                "cart": {
-                  "styles": {
-                    "button": {
-                      "font-family": "Quantico, sans-serif",
-                      "font-weight": "bold",
-                      "font-size": "16px",
-                      "padding-top": "16px",
-                      "padding-bottom": "16px",
-                      "color": "#000000",
-                      ":hover": {
-                        "color": "#000000",
-                        "background-color": "#d7ac04"
-                      },
-                      "background-color": "#efbf04",
-                      ":focus": {
-                        "background-color": "#d7ac04"
-                      }
-                    }
-                  },
-                  "text": {
-                    "title": "Cesta",
-                    "total": "Subtotal",
-                    "empty": "Tu carrito esta vacio.",
-                    "notice": "Envío y descuento se añaden al finalizar la compra.",
-                    "button": "Checkout",
-                    "noteDescription": ""
-                  },
-                  "googleFonts": [
-                    "Quantico"
-                  ]
-                },
-                "toggle": {
-                  "styles": {
-                    "toggle": {
-                      "font-family": "Quantico, sans-serif",
-                      "font-weight": "bold",
-                      "background-color": "#efbf04",
-                      ":hover": {
-                        "background-color": "#d7ac04"
-                      },
-                      ":focus": {
-                        "background-color": "#d7ac04"
-                      }
-                    },
-                    "count": {
-                      "font-size": "16px",
-                      "color": "#000000",
-                      ":hover": {
-                        "color": "#000000"
-                      }
-                    },
-                    "iconPath": {
-                      "fill": "#000000"
-                    }
-                  },
-                  "googleFonts": [
-                    "Quantico"
-                  ]
+              cart: {
+                text: {
+                  total: "Subtotal",
+                  button: "Pagar"
                 }
-              },
-            })
-          }
+              }
+            },
+          })
         }
       })
     }
@@ -321,7 +100,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
     } else {
       loadScript()
     }
-  }, [isPackProveedores, isTicketsEditables])
+  }, [isPackProveedores])
 
   const handleAddToCart = () => {
     addItem({
@@ -432,10 +211,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             </span>
           )}
         </div>
-        {/* Shopify Button for 99 Tickets Editables */}
-        {isTicketsEditables && (
-          <div id="product-component-1778614265732" className="mt-3"></div>
-        )}
+
       </div>
     </motion.article>
   )
