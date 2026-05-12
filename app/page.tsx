@@ -117,7 +117,7 @@ export default function HomePage() {
               {
                 icon: Shield,
                 title: "Garantía Total",
-                description: "Todos nuestros proveedores son de confianza y ofrecen los mejores productos del mercado",  
+                description: "Todos nuestros proveedores son de confianza y ofrecen los mejores productos del mercado",
               },
             ].map((feature, index) => (
               <motion.div
