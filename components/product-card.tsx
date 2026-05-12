@@ -34,6 +34,9 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   useEffect(() => {
     if (!hasShopifyButton) return
     
+    const node = document.getElementById(shopifyNodeId)
+    if (!node || node.hasChildNodes()) return
+    
     const scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js'
     
     const packProveedoresOptions = {
